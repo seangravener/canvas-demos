@@ -1,9 +1,10 @@
-const canvas = document.getElementById("app-canvas");
-const ctx = canvas.getContext("2d");
+import { drawLine, drawShape, adjustCanvasSize } from "./main-util";
 
-adjustCanvasSite();
+// const canvas = document.getElementById("app-canvas");
+// const ctx = canvas.getContext("2d");
+
 window.addEventListener("resize", () => {
-  adjustCanvasSite();
+  adjustCanvasSize();
 });
 
 const mouse = {
@@ -11,24 +12,12 @@ const mouse = {
   y: null,
 };
 
-function drawShape(radius = 0) {
-  const { w, h } = getCenter();
-
-  ctx.beginPath();
-  ctx.moveTo(w, h);
-  ctx.lineTo(w, h - radius);
-  ctx.closePath();
-  ctx.stroke();
-}
+adjustCanvasSize();
+drawLine(0);
 drawShape(100);
 
 function getCenter() {
-  return { w: canvas.width / 2, h: canvas.height / 2 };
-}
-
-function adjustCanvasSite() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  return { x: canvas.width / 2, y: canvas.height / 2 };
 }
 
 console.log("script end");
